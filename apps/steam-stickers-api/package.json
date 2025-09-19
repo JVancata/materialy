@@ -1,0 +1,23 @@
+{
+  "name": "steam-stickers-api",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --env-file=.env index.ts",
+    "docker:build": "docker build -t steam-stickers-api .",
+    "docker:run": "docker run --volume steam-stickers-cache:/mnt/steam-stickers-cache -d -p 3000:3000 steam-stickers-api"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "zod": "^4.1.9"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2"
+  }
+}
