@@ -5,7 +5,7 @@ services:
     build: apps/soundboard-api
     ports:
       - "3000:3000"
-  
+
   soundboard-client:
     build:
       context: apps/soundboard-client
@@ -18,7 +18,7 @@ services:
     build: apps/ctf-1
     ports:
       - "3002:3000"
-  
+
   historie-objednavek:
     build: apps/historie-objednavek
     ports:
@@ -33,5 +33,18 @@ services:
   stock-price-api:
     build:
       context: apps/stock-price-api
+      args:
+        STEAM_STICKERS_API_CACHE_PATH: $STEAM_STICKERS_API_CACHE_PATH
     ports:
       - "3005:3000"
+
+  steam-stickers-api:
+    build:
+      context: apps/steam-stickers-api
+    ports:
+      - "3006:3000"
+    volumes:
+      - steam-stickers-cache:/mnt/steam-stickers-cache
+
+volumes:
+  steam-stickers-cache:

@@ -7,5 +7,7 @@ RUN npm install
 
 COPY . .
 
-CMD ["node", "index.ts"]
+ARG STEAM_STICKERS_API_CACHE_PATH
+
+CMD ["node", "--env-file=.env", "index.ts"]
 EXPOSE 3000
