@@ -25,7 +25,7 @@ setInterval(manipulateStocks, STOCK_MANIPULATION_INTERVAL_MS)
 
 app.use(cors())
 
-app.get('/', cors(), (_req, res) => {
+app.get('/', (_req, res) => {
     const dataWithoutPrice = stocks.map((stock) => {
         const { price, currency, ...rest } = stock;
         return rest
@@ -34,7 +34,7 @@ app.get('/', cors(), (_req, res) => {
     res.json(dataWithoutPrice)
 })
 
-app.get('/stock/:ticker', cors(), (req, res) => {
+app.get('/stock/:ticker', (req, res) => {
     const { ticker: paramTicker } = req.params
 
     if (!paramTicker || typeof paramTicker !== "string") {

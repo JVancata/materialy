@@ -9,7 +9,7 @@ app.use(cors())
 
 app.use(express.static('public'))
 
-app.get('/', cors(), (_req, res) => {
+app.get('/', (_req, res) => {
     res.json(sounds)
 })
 

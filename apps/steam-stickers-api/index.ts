@@ -40,7 +40,7 @@ const marketDownloader = async () => {
 
 app.use(cors())
 
-app.get('/', cors(), (_req, res) => {
+app.get('/', (_req, res) => {
     if (!steamCache?.data?.marketData) {
         res.status(500).send("Server error");
         return;

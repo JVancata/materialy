@@ -9,11 +9,11 @@ app.use(express.json());
 
 let score = 0n;
 
-app.get('/', cors(), (_req, res) => {
+app.get('/', (_req, res) => {
     res.send(score.toString());
 })
 
-app.post("/add", cors(), (req, res) => {
+app.post("/add", (req, res) => {
     const previousScoreString = score.toString();
 
     if (!req.body) {
@@ -37,7 +37,7 @@ app.post("/add", cors(), (req, res) => {
     return;
 })
 
-app.post("/", cors(), (_req, res) => {
+app.post("/", (_req, res) => {
     score += 1n
     const scoreString = score.toString();
 

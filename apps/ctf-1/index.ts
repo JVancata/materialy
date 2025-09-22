@@ -7,11 +7,11 @@ const port = 3000
 app.use(cors())
 app.use(express.json());
 
-app.get('/', cors(), (_request, response) => {
+app.get('/', (_request, response) => {
     response.send('Poslal*a si GET request. Musíš poslat POST request s tělem { "input": "string" }.');
 })
 
-app.post('/', cors(), (request, response) => {
+app.post('/', (request, response) => {
     const input = request.body.input;
 
     if (!input || !input.length) {
