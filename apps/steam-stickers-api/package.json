@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node --watch --env-file=.env index.ts",
     "docker:build": "docker build -t steam-stickers-api .",
-    "docker:run": "docker run --volume steam-stickers-cache:/mnt/steam-stickers-cache -d -p 3000:3000 steam-stickers-api"
+    "docker:run": "docker run --volume steam-stickers-cache:/mnt/steam-stickers-cache -d -p 3000:3000 steam-stickers-api",
+    "test": "node --test"
   },
   "author": "",
   "license": "ISC",

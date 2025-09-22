@@ -1,42 +1,40 @@
 import express from 'express'
 import cors from 'cors'
 import { cache } from './cache.ts'
-import { type MarketResponse, responseSchema } from './const.ts';
+import { getMarketData } from './market.ts';
+import { getShouldRunDataUpdate } from './util/getShouldRunDataUpdate.ts';
+import { INTERVAL_PADDING_MS, RUN_INTERVAL_MS } from './const.ts';
 
-const steamCache = cache
+const steamCache = cache;
 await steamCache.setupCache();
 
-const app = express()
-const port = 3000
+const app = express();
+const port = 3000;
 
-const marketDownloader = async () => {
-    // Too lazy to implement the pagination correctly
-    const urlsToFetch = [
-        "https://steamcommunity.com/market/search/render/?query=&start=0&count=10&search_descriptions=0&sort_column=popular&sort_dir=desc&appid=730&category_730_ItemSet%5B%5D=any&category_730_ProPlayer%5B%5D=any&category_730_StickerCapsule%5B%5D=tag_crate_sticker_pack02&category_730_Tournament%5B%5D=any&category_730_TournamentTeam%5B%5D=any&category_730_Type%5B%5D=any&category_730_Weapon%5B%5D=any&norender=1",
-        "https://steamcommunity.com/market/search/render/?query=&start=10&count=10&search_descriptions=0&sort_column=popular&sort_dir=desc&appid=730&category_730_ItemSet%5B%5D=any&category_730_ProPlayer%5B%5D=any&category_730_StickerCapsule%5B%5D=tag_crate_sticker_pack02&category_730_Tournament%5B%5D=any&category_730_TournamentTeam%5B%5D=any&category_730_Type%5B%5D=any&category_730_Weapon%5B%5D=any&norender=1"
-    ]
+const updateData = async () => {
+    const shouldRun = getShouldRunDataUpdate(steamCache.data?.lastUpdated);
+    if (!shouldRun) {
+        console.log("Update should not run yet, waiting...");
+        return
+    };
 
-    try {
-        const responses: MarketResponse[] = []
-        for (const url of urlsToFetch) {
-            console.log("fetching", url)
-            const marketDataResponse = await fetch(url);
-            const marketData = await responseSchema.parseAsync(await marketDataResponse.json());
-            responses.push(marketData);
-        }
+    console.log("Running data update...")
+    const marketData = await getMarketData();
 
-        const mergedResponse: MarketResponse = responses.reduce((previousValue, currentValue) => {
-            return { ...previousValue, results: [...previousValue.results, ...currentValue.results] }
-        })
+    if (!marketData) {
+        console.error("No market data was fetched, will try the next time...");
+        return
+    };
 
-        console.log("This is the merged response");
-        console.log(mergedResponse);
-    }
-    catch (error) {
-        console.error("Error while fetching Steam market data", error)
-    }
+    const now = new Date();
+    await steamCache.writeCache({ marketData, lastUpdated: now })
 
+    const intervalMs = RUN_INTERVAL_MS + INTERVAL_PADDING_MS;
+    console.log("Data updated, goodbye. Waiting until ", new Date(now.getTime() + intervalMs));
+    setInterval(updateData, intervalMs);
 }
+
+updateData();
 
 app.use(cors())
 
@@ -46,9 +44,9 @@ app.get('/', (_req, res) => {
         return;
     }
 
-    res.json(steamCache.data.marketData)
-})
+    res.json(steamCache.data.marketData);
+});
 
 app.listen(port, () => {
-    console.log(`steam-stickers-api running on port ${port}`)
-})
+    console.log(`steam-stickers-api running on port ${port}`);
+});
