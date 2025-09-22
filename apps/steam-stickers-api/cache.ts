@@ -21,7 +21,7 @@ const readCacheFile = async (): Promise<CacheData | null> => {
         const parsedData: MarketResponse = await responseSchema.parseAsync(JSON.parse(rawData))
         const lastUpdated = new Date(rawLastUpdated)
 
-        if (Number.isNaN(lastUpdated)) {
+        if (Number.isNaN(lastUpdated.getTime())) {
             throw Error("Invalid date in cache!");
         }
 
