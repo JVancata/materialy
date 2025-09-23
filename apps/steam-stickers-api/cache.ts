@@ -1,15 +1,13 @@
 import { writeFile, readFile } from 'node:fs/promises'
 import { responseSchema, type MarketResponse } from "./responseSchema.ts";
 
-const STEAM_STICKERS_API_CACHE_PATH = process.env.STEAM_STICKERS_API_CACHE_PATH
+const STEAM_STICKERS_API_CACHE_PATH = process.env.STEAM_STICKERS_API_CACHE_PATH;
 const dataCacheFile = `${STEAM_STICKERS_API_CACHE_PATH}/cache.json`;
 const lastUpdatedCacheFile = `${STEAM_STICKERS_API_CACHE_PATH}/last-updated.txt`;
 
-const assertValidCacheEnv = () => {
-    if (!STEAM_STICKERS_API_CACHE_PATH) {
-        console.error("No STEAM_STICKERS_API_CACHE_PATH .env value specified! Killing process...");
-        process.exit(1);
-    }
+if (!STEAM_STICKERS_API_CACHE_PATH) {
+    console.error("No STEAM_STICKERS_API_CACHE_PATH .env value specified! Killing process...");
+    process.exit(1);
 }
 
 const readCacheFile = async (): Promise<CacheData | null> => {
@@ -70,7 +68,6 @@ export const cache: Cache = {
         return data
     },
     setupCache: async function () {
-        assertValidCacheEnv();
         this.data = await readCacheFile()
     }
 }
