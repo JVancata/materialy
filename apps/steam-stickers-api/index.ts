@@ -29,12 +29,11 @@ const updateData = async () => {
     const now = new Date();
     await steamCache.writeCache({ marketData, lastUpdated: now })
 
-    const intervalMs = RUN_INTERVAL_MS + INTERVAL_PADDING_MS;
-    console.log("Data updated, goodbye. Waiting until ", new Date(now.getTime() + intervalMs));
-    setInterval(updateData, intervalMs);
+    console.log(`Data updated at ${now.toISOString()} goodbye. Waiting...`);
 }
 
 updateData();
+setInterval(updateData, RUN_INTERVAL_MS + INTERVAL_PADDING_MS);
 
 app.use(cors())
 
