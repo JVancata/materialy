@@ -25,4 +25,6 @@ export const sounds: Sound[] = [
     { url: "sounds/jet2.mp3", name: "Jet 2 Holiday" },
     { url: "sounds/bonk.mp3", name: "Bonk" },
     { url: "sounds/deezNuts.mp3", name: "deezNuts" },
+    { url: "sounds/hihihi-haw.mp3", name: "Hihihi Haw" },
+    { url: "sounds/mimimimi.mp3", name: "mimimimi" },
 ]
