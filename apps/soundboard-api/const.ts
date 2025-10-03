@@ -22,6 +22,7 @@ export const sounds: Sound[] = [
     { url: "sounds/phone.mp3", name: "Phone" },
     { url: "sounds/rizz-sound-effect.mp3", name: "Rizz" },
     { url: "sounds/cr-brrr.mp3", name: "CR brrr" },
+    { url: "sounds/hells-kitchen-violin.mp3", name: "Hell's Kitchen Violin" },
     { url: "sounds/jet2.mp3", name: "Jet 2 Holiday" },
     { url: "sounds/bonk.mp3", name: "Bonk" },
     { url: "sounds/deezNuts.mp3", name: "deezNuts" },
@@ -30,4 +31,5 @@ export const sounds: Sound[] = [
     { url: "sounds/bomboclat.mp3", name: "bomboclat" },
     { url: "sounds/vypecky.mp3", name: "vypecky" },
     { url: "sounds/RickRoll.mp3", name: "RickRoll" },
+    { url: "sounds/heartsteel_proc_sound.mp3", name: "Heartsteel"},
 ]
