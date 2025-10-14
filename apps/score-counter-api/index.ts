@@ -14,8 +14,6 @@ app.get('/', (_req, res) => {
 })
 
 app.post("/add", (req, res) => {
-    res.sendStatus(404);
-    return;
     const previousScoreString = score.toString();
 
     if (!req.body) {
