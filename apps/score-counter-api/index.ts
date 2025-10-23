@@ -19,7 +19,7 @@ app.post("/add", (req, res) => {
     if (!req.headers["content-type"]
         || req.headers["content-type"] != "application/json") {
         res.status(415);
-        res.json({ error: 'Error: Content-Type must be "application/json"' })
+        throw new Error('Error: Content-Type must be "application/json"')
         return;
     }
 
