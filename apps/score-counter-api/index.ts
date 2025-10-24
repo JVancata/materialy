@@ -16,15 +16,16 @@ app.get('/', (_req, res) => {
 app.post("/add", (req, res) => {
     const previousScoreString = score.toString();
 
-    if (!req.headers["content-type"]
-        || req.headers["content-type"] != "application/json") {
+    const contetTypeHeader = req.headers["content-type"];
+    if (contetTypeHeader !== "application/json") {
         res.status(415);
-        throw new Error('Error: Content-Type must be "application/json"')
+        res.send('Error: Content-Type must be "application/json"')
         return;
     }
 
     if (!req.body) {
-        res.send(previousScoreString);
+        res.status(422);
+        res.send("Error: Missing body of the request");
         return;
     }
 
