@@ -16,19 +16,23 @@ app.get('/', (_req, res) => {
 app.post("/add", (req, res) => {
     const previousScoreString = score.toString();
 
-    if (!req.body) {
-        res.send(previousScoreString);
+    const contentTypeHeader = req.headers["content-type"];
+    if (contentTypeHeader !== "application/json") {
+        res.status(415);
+        res.send('Error: Content-Type must be "application/json"')
         return;
     }
 
     const { value } = req.body;
     if (!value) {
-        res.send(previousScoreString);
+        res.status(422);
+        res.send("Error: Missing body of the request");
         return;
     }
 
     if (typeof value !== "number" || !Number.isSafeInteger(value)) {
-        res.send(previousScoreString);
+        res.status(422);
+        res.send("Error: Value should be number");
         return;
     }
 
