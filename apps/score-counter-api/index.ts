@@ -16,7 +16,7 @@ app.get('/', (_req, res) => {
 app.post("/add", (req, res) => {
     const previousScoreString = score.toString();
 
-    const contenTtypeHeader = req.headers["content-type"];
+    const contentTypeHeader = req.headers["content-type"];
     if (contentTypeHeader !== "application/json") {
         res.status(415);
         res.send('Error: Content-Type must be "application/json"')
