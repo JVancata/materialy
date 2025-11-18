@@ -3,7 +3,7 @@ import cors from 'cors'
 import { initialStocksData } from './const.ts'
 import { getRandomPriceMultiplier } from './getRandomPriceMultiplier.ts'
 
-const STOCK_MANIPULATION_INTERVAL_MS = 2000;
+const STOCK_MANIPULATION_INTERVAL_MS = 60 * 1000;
 const app = express()
 const port = 3000
 
