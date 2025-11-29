@@ -7,6 +7,13 @@ const port = 3000
 app.use(cors())
 app.use(express.json());
 
+const FLAG = process.env.CTF_1_FLAG;
+
+if (!FLAG) {
+    console.error("No CTF_1_FLAG .env value specified! Killing process...");
+    process.exit(1);
+}
+
 app.get('/', (_request, response) => {
     response.send('Poslal*a si GET request. Musíš poslat POST request s tělem { "input": "string" }.');
 })
@@ -29,7 +36,7 @@ app.post('/', (request, response) => {
         return;
     }
 
-    response.send(`Gratuluju 🚩. Tvůj vstup je "${input}"`);
+    response.send(`${FLAG}`);
     return;
 })
 
