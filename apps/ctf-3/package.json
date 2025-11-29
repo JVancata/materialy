@@ -1,0 +1,22 @@
+{
+  "name": "ctf-3",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --experimental-strip-types --env-file=.env index.ts",
+    "docker:build": "docker build -t ctf-3 .",
+    "docker:run": "docker run -p 3000:3000 ctf-3"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2"
+  }
+}

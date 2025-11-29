@@ -56,5 +56,12 @@ services:
     ports:
       - "3007:80"
 
+  ctf-3:
+    build: apps/ctf-3
+    environment:
+      CTF_3_FLAG: $CTF_3_FLAG
+    ports:
+      - "3008:3000"
+
 volumes:
   steam-stickers-cache:
