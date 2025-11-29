@@ -16,6 +16,8 @@ services:
 
   ctf-1:
     build: apps/ctf-1
+    environment:
+      CTF_1_FLAG: $CTF_1_FLAG
     ports:
       - "3002:3000"
 
