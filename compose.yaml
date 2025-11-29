@@ -48,5 +48,13 @@ services:
     volumes:
       - steam-stickers-cache:/mnt/steam-stickers-cache
 
+  ctf-2:
+    build: 
+      context: apps/ctf-2
+      args:
+        VITE_CTF_2_FLAG: $CTF_2_FLAG
+    ports:
+      - "3007:80"
+
 volumes:
   steam-stickers-cache:
