@@ -11,4 +11,5 @@ export const initialStocksData: Stock[] = [
     { ticker: "CEZ", name: "ČEZ, a.s.", price: 1267.36, currency: "CZK" },
     { ticker: "RBLX", name: "Roblox corporation", price: 137.25, currency: "USD" },
     { ticker: "U", name: "Unity Software Inc.", price: 46.53, currency: "USD" },
+    { ticker: "EA", name: "Electronics Arts", price: 202.62, currency: "USD" },
 ]
