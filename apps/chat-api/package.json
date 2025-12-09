@@ -1,0 +1,22 @@
+{
+  "name": "chat-api",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --experimental-strip-types index.ts",
+    "docker:build": "docker build -t chat-api .",
+    "docker:run": "docker run -d -p 3000:3000 chat-api"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2"
+  }
+}
