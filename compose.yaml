@@ -49,7 +49,7 @@ services:
       - steam-stickers-cache:/mnt/steam-stickers-cache
 
   ctf-2:
-    build: 
+    build:
       context: apps/ctf-2
       args:
         VITE_CTF_2_FLAG: $CTF_2_FLAG
@@ -62,6 +62,12 @@ services:
       CTF_3_FLAG: $CTF_3_FLAG
     ports:
       - "3008:3000"
+
+  chat-api:
+    build:
+      context: apps/chat-api
+    ports:
+      - "3009:3000"
 
 volumes:
   steam-stickers-cache:
