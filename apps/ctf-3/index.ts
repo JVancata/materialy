@@ -1,8 +1,8 @@
-import express from 'express'
-import cors from 'cors'
+import express from 'express';
+import cors from 'cors';
 
-const app = express()
-const port = 3000
+const app = express();
+const port = 3000;
 
 app.use(cors())
 app.use(express.json());
@@ -16,7 +16,7 @@ if (!FLAG) {
 
 app.get('/', (_request, response) => {
     response.send('Poslal*a si GET request. Musíš poslat POST request s tělem { "input": "string" }, aby si ověřil*a vlajku.');
-})
+});
 
 app.post('/', (request, response) => {
     const input = request.body.input;
@@ -33,8 +33,8 @@ app.post('/', (request, response) => {
 
     response.send(`❌ Zkoušej to dál...`);
     return;
-})
+});
 
 app.listen(port, () => {
     console.log(`ctf-3 running on port ${port}`)
-})
+});
