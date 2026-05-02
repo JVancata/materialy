@@ -10,7 +10,7 @@ Node v24
 use the docker commands in package.json
 `npm run docker:build && npm run docker:run`
 
-or run it manually
+or run it manually via
 
 `docker build -t your-tag .`
 `docker run -p 127.0.0.1:3000:3000 your-tag`
